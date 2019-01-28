@@ -7,6 +7,7 @@ import Understanding from '../Understanding/Understanding.js';
 import ThirdPage from '../ThirdPage/ThirdPage.js';
 import FourthPage from '../FourthPage/FourthPage.js';
 import Review from '../Review/Review.js'
+import Lastpage from '../Review/Lastpage.js';
 
 // Connect Store
 import {connect} from 'react-redux';
@@ -42,6 +43,7 @@ class App extends Component {
             <Route exact path="/thirdpage" component={ThirdPage} />
             <Route exact path="/fourthpage" component={FourthPage} />
             <Route exact path="/review" component={Review} />
+            <Route exact path="/lastpage" component={Lastpage} />
           </div>
         </Router>
       </div>
