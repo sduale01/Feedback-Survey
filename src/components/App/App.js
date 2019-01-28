@@ -11,6 +11,21 @@ import FourthPage from '../FourthPage/FourthPage.js';
 import {connect} from 'react-redux';
 
 class App extends Component {
+  componentDidMount() {
+    this.getFeedback();
+  }
+
+  // GET feedback from server
+  getFeedback = () => {
+    axios.get('/feedback').then(response => {
+      // console.log(response.data);
+      
+      const action = {type: 'GET_DATA', payload: response.data}
+      this.props.dispatch(action)
+    })
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -28,12 +43,12 @@ class App extends Component {
           </div>
         </Router>
         <h2>Review Your Feedback</h2>
-        <div>{JSON.stringify(this.props.reduxStore.formReducer)}</div>
+        {JSON.stringify(this.props.reduxStore.formReducer)}
         <ul>
-          <li>Feelings: {this.props.reduxStore.formReducer.feelings} </li>
-          <li>Understanding: {this.props.reduxStore.formReducer.understanding}</li>
-          <li>Support: {this.props.reduxStore.formReducer.support}</li>
-          <li>Comments: {this.props.reduxStore.formReducer.comments}</li>
+          <li>Feelings: {this.props.reduxStore.collectSurveyReducer.feeling} </li>
+          <li>Understanding: {this.props.reduxStore.collectSurveyReducer.understanding}</li>
+          <li>Support: {this.props.reduxStore.collectSurveyReducer.support}</li>
+          <li>Comments: {this.props.reduxStore.collectSurveyReducer.comments}</li>
         </ul>
       </div>
     );
