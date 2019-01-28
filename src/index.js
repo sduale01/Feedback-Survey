@@ -8,7 +8,6 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 
-// const formSelection = {feelings: 5, understanding: 4, support: 3, comments: 'random comment'}
 const formReducer = (state = [], action) => {
     if (action.type === 'GET_DATA') {
         return action.payload;
@@ -16,7 +15,9 @@ const formReducer = (state = [], action) => {
     return state;
 }
 
-const collectSurveyReducer = (state = [], action) => {
+const formSelection = {feeling: '', understanding: '', support: '', comments: ''}
+
+const collectSurveyReducer = (state = formSelection, action) => {
     if (action.type === 'SET_FEELING') {
         return {...state, feeling: action.payload}
     } else if (action.type === 'SET_UNDERSTANDING') {

@@ -19,10 +19,15 @@ class ThirdPage extends Component {
 
     // runs when next button is clicked.
     handleNextButton = () => {
-        console.log('next btn clicked');
+        if (this.state.comments === '') {
+            alert('Must fill out comment')
+        } else {
+            console.log('next btn clicked');
         const action = {type: 'SET_COMMENTS', payload: this.state.comments}
         this.props.dispatch(action)
         this.props.history.push('/review')
+        }
+        
     }
 
     render() {
@@ -30,8 +35,10 @@ class ThirdPage extends Component {
             <div>
                 <h1>Any comments you want to leave?</h1>
                 <input onChange={this.handleInputChange} type="text" />
+                
                 <button onClick={this.handleNextButton}>Next</button>
                 <Review />
+                
             </div>
         );
     }

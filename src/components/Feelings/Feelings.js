@@ -28,7 +28,14 @@ class Feelings extends Component {
         return (
             <div>
                 <h1>How are you feeling today?</h1>
-                <input onChange={this.handleInputChange} type="number" />
+                <select onChange={this.handleInputChange}>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
                 <button onClick={this.handleNextButton}>Next</button>
                 <Review />
             </div>
