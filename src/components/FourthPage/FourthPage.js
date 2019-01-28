@@ -1,19 +1,40 @@
 import React, {Component} from 'react';
+import Review from '../Review/Review.js'
+import {connect} from 'react-redux';
 
-class FourthPage extends Component {
+class ThirdPage extends Component {
+    constructor() {
+        super();
+        this.state = {
+            comments: '',
+        }
+    }
+
+    // changes state when input field is filled
+    handleInputChange = (event) => {
+        this.setState({
+            comments: event.target.value
+        });
+    }
+
     // runs when next button is clicked.
     handleNextButton = () => {
         console.log('next btn clicked');
-        this.props.history.push('/')
+        const action = {type: 'SET_COMMENTS', payload: this.state.comments}
+        this.props.dispatch(action)
+        this.props.history.push('/review')
     }
+
     render() {
         return (
             <div>
                 <h1>Any comments you want to leave?</h1>
+                <input onChange={this.handleInputChange} type="text" />
                 <button onClick={this.handleNextButton}>Next</button>
+                <Review />
             </div>
         );
     }
 }
 
-export default FourthPage;
+export default connect()(ThirdPage);

@@ -6,6 +6,7 @@ import Feelings from '../Feelings/Feelings.js';
 import Understanding from '../Understanding/Understanding.js';
 import ThirdPage from '../ThirdPage/ThirdPage.js';
 import FourthPage from '../FourthPage/FourthPage.js';
+import Review from '../Review/Review.js'
 
 // Connect Store
 import {connect} from 'react-redux';
@@ -40,23 +41,15 @@ class App extends Component {
             <Route exact path="/understanding" component={Understanding} />
             <Route exact path="/thirdpage" component={ThirdPage} />
             <Route exact path="/fourthpage" component={FourthPage} />
+            <Route exact path="/review" component={Review} />
           </div>
         </Router>
-        <h2>Review Your Feedback</h2>
-        {JSON.stringify(this.props.reduxStore.formReducer)}
-        <ul>
-          <li>Feelings: {this.props.reduxStore.collectSurveyReducer.feeling} </li>
-          <li>Understanding: {this.props.reduxStore.collectSurveyReducer.understanding}</li>
-          <li>Support: {this.props.reduxStore.collectSurveyReducer.support}</li>
-          <li>Comments: {this.props.reduxStore.collectSurveyReducer.comments}</li>
-        </ul>
       </div>
+      
     );
   }
 }
 
 
-const mapReduxStoreToProps = (reduxStore) => ({
-  reduxStore
-});
-export default connect(mapReduxStoreToProps)(App);
+
+export default connect()(App);
