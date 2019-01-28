@@ -3,6 +3,15 @@ import { connect } from 'react-redux';
 
 class Review extends Component {
     render() {
+
+        // conditional render
+        let renderElement;
+        if (this.props.reduxStore.collectSurveyReducer.comments != ''){
+            renderElement = <button>submit</button>
+        } else {
+            renderElement = <button disabled>incomplete</button>
+        }
+
         return (
             <div>
                 <h2>Review Your Feedback</h2>
@@ -13,6 +22,7 @@ class Review extends Component {
                     <li>Support: {this.props.reduxStore.collectSurveyReducer.support}</li>
                     <li>Comments: {this.props.reduxStore.collectSurveyReducer.comments}</li>
                 </ul>
+                <div>{renderElement}</div>
             </div>
         );
     }
