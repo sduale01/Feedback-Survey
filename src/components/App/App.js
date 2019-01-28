@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './App.css';
 import {HashRouter as Router, Route} from 'react-router-dom';
 import Feelings from '../Feelings/Feelings.js';
@@ -8,26 +7,12 @@ import ThirdPage from '../ThirdPage/ThirdPage.js';
 import FourthPage from '../FourthPage/FourthPage.js';
 import Review from '../Review/Review.js'
 import Lastpage from '../Review/Lastpage.js';
+import Admin from '../Admin/Admin.js';
 
 // Connect Store
 import {connect} from 'react-redux';
 
 class App extends Component {
-  componentDidMount() {
-    this.getFeedback();
-  }
-
-  // GET feedback from server
-  getFeedback = () => {
-    axios.get('/feedback').then(response => {
-      // console.log(response.data);
-      
-      const action = {type: 'GET_DATA', payload: response.data}
-      this.props.dispatch(action)
-    })
-  }
-
-
   render() {
     return (
       <div className="App">
@@ -44,6 +29,7 @@ class App extends Component {
             <Route exact path="/fourthpage" component={FourthPage} />
             <Route exact path="/review" component={Review} />
             <Route exact path="/lastpage" component={Lastpage} />
+            <Route exact path="/admin" component={Admin} />
           </div>
         </Router>
       </div>

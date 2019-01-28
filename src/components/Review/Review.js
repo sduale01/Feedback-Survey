@@ -28,7 +28,6 @@ class Review extends Component {
         return (
             <div>
                 <h2>Review Your Feedback</h2>
-                {JSON.stringify(this.props.reduxStore.collectSurveyReducer)}
                 <ul>
                     <li>Feelings: {this.props.reduxStore.collectSurveyReducer.feeling} </li>
                     <li>Understanding: {this.props.reduxStore.collectSurveyReducer.understanding}</li>
