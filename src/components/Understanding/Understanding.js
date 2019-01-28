@@ -1,9 +1,27 @@
 import React, {Component} from 'react';
+import Review from '../Review/Review.js'
+import {connect} from 'react-redux';
 
 class Understanding extends Component {
+    constructor() {
+        super();
+        this.state = {
+            understanding: 0,
+        }
+    }
+
+    // changes state when input field is filled
+    handleInputChange = (event) => {
+        this.setState({
+            understanding: event.target.value
+        });
+    }
+
     // runs when next button is clicked.
     handleNextButton = () => {
         console.log('next btn clicked');
+        const action = {type: 'SET_UNDERSTANDING', payload: this.state.understanding}
+        this.props.dispatch(action)
         this.props.history.push('/thirdpage')
     }
 
@@ -11,10 +29,12 @@ class Understanding extends Component {
         return (
             <div>
                 <h1>How well are you understanding the content?</h1>
+                <input onChange={this.handleInputChange} type="number" />
                 <button onClick={this.handleNextButton}>Next</button>
+                <Review />
             </div>
         );
     }
 }
 
-export default Understanding;
+export default connect()(Understanding);

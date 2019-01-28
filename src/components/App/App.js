@@ -6,11 +6,27 @@ import Feelings from '../Feelings/Feelings.js';
 import Understanding from '../Understanding/Understanding.js';
 import ThirdPage from '../ThirdPage/ThirdPage.js';
 import FourthPage from '../FourthPage/FourthPage.js';
+import Review from '../Review/Review.js'
 
 // Connect Store
 import {connect} from 'react-redux';
 
 class App extends Component {
+  componentDidMount() {
+    this.getFeedback();
+  }
+
+  // GET feedback from server
+  getFeedback = () => {
+    axios.get('/feedback').then(response => {
+      // console.log(response.data);
+      
+      const action = {type: 'GET_DATA', payload: response.data}
+      this.props.dispatch(action)
+    })
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -25,23 +41,15 @@ class App extends Component {
             <Route exact path="/understanding" component={Understanding} />
             <Route exact path="/thirdpage" component={ThirdPage} />
             <Route exact path="/fourthpage" component={FourthPage} />
+            <Route exact path="/review" component={Review} />
           </div>
         </Router>
-        <h2>Review Your Feedback</h2>
-        <div>{JSON.stringify(this.props.reduxStore.formReducer)}</div>
-        <ul>
-          <li>Feelings: {this.props.reduxStore.formReducer.feelings} </li>
-          <li>Understanding: {this.props.reduxStore.formReducer.understanding}</li>
-          <li>Support: {this.props.reduxStore.formReducer.support}</li>
-          <li>Comments: {this.props.reduxStore.formReducer.comments}</li>
-        </ul>
       </div>
+      
     );
   }
 }
 
 
-const mapReduxStoreToProps = (reduxStore) => ({
-  reduxStore
-});
-export default connect(mapReduxStoreToProps)(App);
+
+export default connect()(App);
