@@ -7,6 +7,9 @@ import Understanding from '../Understanding/Understanding.js';
 import ThirdPage from '../ThirdPage/ThirdPage.js';
 import FourthPage from '../FourthPage/FourthPage.js';
 
+// Connect Store
+import {connect} from 'react-redux';
+
 class App extends Component {
   render() {
     return (
@@ -24,9 +27,21 @@ class App extends Component {
             <Route exact path="/fourthpage" component={FourthPage} />
           </div>
         </Router>
+        <h2>Review Your Feedback</h2>
+        <div>{JSON.stringify(this.props.reduxStore.formReducer)}</div>
+        <ul>
+          <li>Feelings: {this.props.reduxStore.formReducer.feelings} </li>
+          <li>Understanding: {this.props.reduxStore.formReducer.understanding}</li>
+          <li>Support: {this.props.reduxStore.formReducer.support}</li>
+          <li>Comments: {this.props.reduxStore.formReducer.comments}</li>
+        </ul>
       </div>
     );
   }
 }
 
-export default App;
+
+const mapReduxStoreToProps = (reduxStore) => ({
+  reduxStore
+});
+export default connect(mapReduxStoreToProps)(App);
